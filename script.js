@@ -75,11 +75,13 @@ function formatCard(card) {
 function calculateScore(cards) {
   let score = 0;
   let hasAce = false;
-
+  let aceCount = 0;
+  
   for (const card of cards) {
     const value = card.split(' ')[0];
     if (value === 'A') {
       hasAce = true;
+      aceCount++;
       score += 11;
     } else if (value === 'K' || value === 'Q' || value === 'J') {
       score += 10;
@@ -87,13 +89,14 @@ function calculateScore(cards) {
       score += parseInt(value);
     }
   }
-
-  if (hasAce && score > 21) {
+  
+  while (hasAce && score > 21 && aceCount > 0) {
     score -= 10;
+    aceCount--;
   }
-
+  
   return score;
-}
+};
 
 // Hit
 hitButton.addEventListener('click', () => {
