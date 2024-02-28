@@ -62,7 +62,11 @@ function updateUI() {
   dealerHand.innerHTML = dealerCards.map(card => formatCard(card)).join(', ');
   playerScore.textContent = calculateScore(playerCards);
   dealerScore.textContent = calculateScore(dealerCards);
-  hitButton.disabled = calculateScore(playerCards) === 21 ? true : false;
+  if (calculateScore(playerCards) === 21) {
+    hitButton.disabled = true;
+  } else {
+    hitButton.disabled = false;
+  }
 }
 
 // Format card
