@@ -31,7 +31,6 @@ function startGame() {
 
   updateUI();
   startButton.disabled = true;
-  hitButton.disabled = false;
   standButton.disabled = false;
 }
 
@@ -63,6 +62,7 @@ function updateUI() {
   dealerHand.innerHTML = dealerCards.map(card => formatCard(card)).join(', ');
   playerScore.textContent = calculateScore(playerCards);
   dealerScore.textContent = calculateScore(dealerCards);
+  hitButton.disabled = calculateScore(playerCards) === 21 ? true : false;
 }
 
 // Format card
@@ -151,7 +151,11 @@ function endGame() {
   } else {
     message = "It's a Tie!";  
   }
-
+  
+  if (!hasBlackjack(playerCards) && playerScoreValue == 21) {
+    message += " Player reached 21!"
+  }
+  
   showMessage(message);
 
   startButton.disabled = false;
