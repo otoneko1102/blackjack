@@ -7,6 +7,12 @@ body {
   margin: 0;
 }
 
+p {
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .game {
   text-align: center;
   background-color: #f0f0f0;
