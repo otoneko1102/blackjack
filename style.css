@@ -9,8 +9,24 @@ body {
 
 p {
   text-align: left;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+#description h1 {
+  margin-left: 30px;
+}
+
+#description h2 {
+  margin-left: 30px;
+}
+
+#description h3 {
+  margin-left: 30px;
+}
+
+#description h4 {
+  margin-left: 30px;
 }
 
 .game {
@@ -32,6 +48,12 @@ button {
   padding: 5px 10px;
   font-size: 16px;
   cursor: pointer;
+}
+
+#language {
+  position: fixed;
+  top: 10px;
+  left: 10px;
 }
 
 .overlay {
