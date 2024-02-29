@@ -50,7 +50,7 @@ button {
   cursor: pointer;
 }
 
-#language {
+#fixed {
   position: fixed;
   top: 10px;
   left: 10px;
