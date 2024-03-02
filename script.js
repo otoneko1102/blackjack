@@ -109,6 +109,8 @@ hitButton.addEventListener('click', () => {
 
   if (calculateScore(playerCards) > 21) {
     endGame(false);
+  } else {
+    playSound("snd/hit.mp3");
   }
 });
 
@@ -137,29 +139,39 @@ function endGame() {
   const dealerScoreValue = calculateScore(dealerCards);
 
   let message = "";
+  let soundPath = "snd/";
 
   if (hasBlackjack(playerCards) && hasBlackjack(dealerCards)) {
     message = "It's a Tie with Blackjack!";
+    soundPath += "tie.mp3";
   } else if (hasBlackjack(playerCards)) {
     message = "Blackjack! Player Wins!";
+    soundPath += "bj.mp3";
   } else if (hasBlackjack(dealerCards)) {
     message = "Dealer has Blackjack! Dealer Wins!";
+    soundPath += "lose.mp3";
   } else if (playerScoreValue > 21) {
     message = "Player Busts! Dealer Wins!";
+    soundPath += "lose.mp3";
   } else if (dealerScoreValue > 21) {
     message = "Dealer Busts! Player Wins!";
+    soundPath += "win.mp3";
   } else if (playerScoreValue > dealerScoreValue) {
     message = "Player Wins!";
+    soundPath += "win.mp3";
   } else if (playerScoreValue < dealerScoreValue) {
     message = "Dealer Wins!";
+    soundPath += "lose.mp3";
   } else {
-    message = "It's a Tie!";  
+    message = "It's a Tie!";
+    soundPath += "tie.mp3";
   }
   
   if (!hasBlackjack(playerCards) && playerScoreValue == 21) {
-    message += " Player reached 21!"
+    message += " Player reached 21!";
   }
-  
+
+  playSound(soundPath);
   showMessage(message);
 
   startButton.disabled = false;
@@ -180,6 +192,11 @@ function showMessage(message) {
   setTimeout(() => {
     overlay.remove();
   }, 1000);
+}
+
+function playSound(path) {
+  const sound = new Audio(path);
+  sound.play();
 }
 
 // Reset
