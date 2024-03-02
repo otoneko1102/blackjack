@@ -30,6 +30,7 @@ function startGame() {
   dealerCards = [drawCard()];
 
   updateUI();
+  playSound("snd/start.mp3");
   startButton.disabled = true;
   standButton.disabled = false;
 }
