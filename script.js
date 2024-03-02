@@ -152,7 +152,7 @@ function endGame() {
     soundPath += "lose.mp3";
   } else if (playerScoreValue > 21) {
     message = "Player Busts! Dealer Wins!";
-    soundPath += "lose.mp3";
+    soundPath += "burst.mp3";
   } else if (dealerScoreValue > 21) {
     message = "Dealer Busts! Player Wins!";
     soundPath += "win.mp3";
