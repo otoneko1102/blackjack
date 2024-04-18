@@ -15,8 +15,8 @@ const descriptions = {
       <strong>Stand:</strong> To decline any further cards and retain the current hand value.<br>
       <strong>Dealer:</strong> The person representing the house who deals the cards and plays against the player.<br>
       <strong>Blackjack:</strong> A winning hand consisting of an ace and a card with a value of 10, totaling 21.<br>
-			In addition to the 10 card, J, Q, and K cards are also considered 10 points.<br>
-			Cards of A are worth 1 or 11 points.
+      In addition to the 10 card, J, Q, and K cards are also considered 10 points.<br>
+      Cards of A are worth 1 or 11 points.
     </p>
   `,
   jp: `
@@ -34,8 +34,8 @@ const descriptions = {
       <strong>スタンド：</strong> これ以上のカードを受け取らず、現在の手札を維持すること。<br>
       <strong>ディーラー：</strong> ハウスを代表してカードを配る人で、プレイヤーと対戦する。<br>
       <strong>ブラックジャック：</strong> エースと10点のカードで構成される合計が21の勝ち手。<br>
-			10のカードのほかに、J、Q、Kのカードも10点とみなされます。<br>
-			Aのカードは1点または11点とみなします。
+      10のカードのほかに、J、Q、Kのカードも10点とみなされます。<br>
+      Aのカードは1点または11点とみなします。
     </p>
   `
 };
