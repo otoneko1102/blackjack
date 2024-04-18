@@ -5,6 +5,10 @@ const playerHand = document.getElementById('player-hand');
 const dealerHand = document.getElementById('dealer-hand');
 const playerScore = document.getElementById('player-score');
 const dealerScore = document.getElementById('dealer-score');
+let count;
+if (!count) {
+	count = { win: 0, lose: 0, tie: 0, blackjack: 0, reach21: 0 };
+}
 let deck = [];
 let playerCards = [];
 let dealerCards = [];
@@ -19,7 +23,6 @@ const suitEmojis = {
 
 document.getElementById('toggle-scoreboard').addEventListener('click', function() {
   let scoreboard = document.getElementById('scoreboard');
-	const count = JSON.parse(localStorage.getItem('count')) || { win: 0, lose: 0, tie: 0, blackjack: 0, reach21: 0 };
   if (scoreboard.style.display === 'none') {
     scoreboard.style.display = 'block';
   } else {
@@ -153,7 +156,6 @@ function hasBlackjack(cards) {
 
 // End
 function endGame() {
-	const count = JSON.parse(localStorage.getItem('count')) || { win: 0, lose: 0, tie: 0, blackjack: 0, reach21: 0 };
   gameInProgress = false;
 
   const playerScoreValue = calculateScore(playerCards);
