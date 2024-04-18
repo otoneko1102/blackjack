@@ -5,7 +5,6 @@ const playerHand = document.getElementById('player-hand');
 const dealerHand = document.getElementById('dealer-hand');
 const playerScore = document.getElementById('player-score');
 const dealerScore = document.getElementById('dealer-score');
-
 let deck = [];
 let playerCards = [];
 let dealerCards = [];
@@ -17,6 +16,26 @@ const suitEmojis = {
   'Clubs': '♣',
   'Spades': '♠'
 };
+
+document.getElementById('toggle-scoreboard').addEventListener('click', function() {
+  let scoreboard = document.getElementById('scoreboard');
+	const count = JSON.parse(localStorage.getItem('count')) || { win: 0, lose: 0, tie: 0, blackjack: 0, reach21: 0 };
+  if (scoreboard.style.display === 'none') {
+    scoreboard.style.display = 'block';
+  } else {
+    scoreboard.style.display = 'none';
+  }
+});
+
+// Update scoreboard
+function updateScoreboard(totalPlays, wins, losses, draws, blackjacks, twentyOne) {
+  document.getElementById('total').textContent = `${totalPlays}`;
+  document.getElementById('win').textContent = `${wins}`;
+  document.getElementById('lose').textContent = `${losses}`;
+  document.getElementById('tie').textContent = `${draws}`;
+  document.getElementById('blackjack').textContent = `${blackjacks}`;
+  document.getElementById('twenty-one').textContent = `${twentyOne}`;
+}
 
 // Start
 startButton.addEventListener('click', startGame);
@@ -134,6 +153,7 @@ function hasBlackjack(cards) {
 
 // End
 function endGame() {
+	const count = JSON.parse(localStorage.getItem('count')) || { win: 0, lose: 0, tie: 0, blackjack: 0, reach21: 0 };
   gameInProgress = false;
 
   const playerScoreValue = calculateScore(playerCards);
@@ -145,33 +165,47 @@ function endGame() {
   if (hasBlackjack(playerCards) && hasBlackjack(dealerCards)) {
     message = "It's a Tie with Blackjack!";
     soundPath += "tie.mp3";
+		count.tie++;
+		count.blackjack++;
   } else if (hasBlackjack(playerCards)) {
     message = "Blackjack! Player Wins!";
     soundPath += "bj.mp3";
+		count.win++;
+		count.blackjack++;
   } else if (hasBlackjack(dealerCards)) {
     message = "Dealer has Blackjack! Dealer Wins!";
     soundPath += "lose.mp3";
+		count.lose++;
   } else if (playerScoreValue > 21) {
     message = "Player Busts! Dealer Wins!";
     soundPath += "burst.mp3";
+		count.lose++;
   } else if (dealerScoreValue > 21) {
     message = "Dealer Busts! Player Wins!";
     soundPath += "win.mp3";
+		count.win++;
   } else if (playerScoreValue > dealerScoreValue) {
     message = "Player Wins!";
     soundPath += "win.mp3";
+		count.win++;
   } else if (playerScoreValue < dealerScoreValue) {
     message = "Dealer Wins!";
     soundPath += "lose.mp3";
+		count.lose++;
   } else {
     message = "It's a Tie!";
     soundPath += "tie.mp3";
+		count.tie++;
   }
   
   if (!hasBlackjack(playerCards) && playerScoreValue == 21) {
     message += " Player reached 21!";
+		count.reach21++;
   }
-
+	
+	const data = JSON.stringify(count);
+	localStorage.setItem('count', count);
+	updateScoreboard(count.win + count.lose + count.tie, count.win, count.lose, count.tie, count.blackjack, count.reach21);
   playSound(soundPath);
   showMessage(message);
 
