@@ -1,4 +1,3 @@
-let storage = localStorage;
 const startButton = document.getElementById('start-button');
 const hitButton = document.getElementById('hit-button');
 const standButton = document.getElementById('stand-button');
@@ -8,11 +7,7 @@ const playerScore = document.getElementById('player-score');
 const dealerScore = document.getElementById('dealer-score');
 let count;
 if (!count) {
-  try {
-    count = JSON.parse(storage.getItem('count'));
-  } catch {
-    count = { win: 0, lose: 0, tie: 0, blackjack: 0, reach21: 0 };
-  }
+  count = { win: 0, lose: 0, tie: 0, blackjack: 0, reach21: 0 };
 }
 let deck = [];
 let playerCards = [];
@@ -210,10 +205,7 @@ function endGame() {
     message += " Player reached 21!";
     count.reach21++;
   }
-
-  try {
-    storage.setItem('count', JSON.stringify(count));
-  } catch {}
+  
   updateScoreboard(count.win + count.lose + count.tie, count.win, count.lose, count.tie, count.blackjack, count.reach21);
   playSound(soundPath);
   showMessage(message);
