@@ -1,4 +1,4 @@
-let storage = localStorage;
+let storage = sessionStorage;
 const startButton = document.getElementById('start-button');
 const hitButton = document.getElementById('hit-button');
 const standButton = document.getElementById('stand-button');
