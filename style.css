@@ -91,7 +91,7 @@ button {
 .scoreboard {
   display: none;
   position: fixed;
-  top: 10px;
+  top: 60px;
   right: 10px;
   background-color: #ffffff;
   padding: 10px;
