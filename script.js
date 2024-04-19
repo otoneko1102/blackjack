@@ -26,14 +26,15 @@ const suitEmojis = {
   'Spades': '♠'
 };
 
-document.getElementById('toggle-scoreboard').addEventListener('click', function() {
+// Toggle scoreboard
+function toggleScoreboard() {
   let scoreboard = document.getElementById('scoreboard');
   if (scoreboard.style.display === 'none') {
     scoreboard.style.display = 'block';
   } else {
     scoreboard.style.display = 'none';
   }
-});
+}
 
 // Update scoreboard
 function updateScoreboard(totalPlays, wins, losses, draws, blackjacks, twentyOne) {
