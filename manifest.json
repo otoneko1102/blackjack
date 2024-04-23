@@ -3,7 +3,7 @@
   "name": "Simple Blackjack",
   "short_name": "Simple BJ",
   "description": "A Simple Blackjack simulator.",
-  "start_url": "/blackjack/",
+  "start_url": "blackjack.otoneko.jp/",
   "orientation": "any",
   "display": "standalone",
   "version": "1.0.0",
